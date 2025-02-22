@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useLocalStorage } from "../custom_hooks/useLocalStorage";
 
 const ToDoList = () => {
-    const [tasks, setTasks] = useState([]); 
+    const [tasks, setTasks] = useLocalStorage("tasks", []);
     const [newTask, setNewTask] = useState("");
 
 
