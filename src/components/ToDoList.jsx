@@ -1,20 +1,36 @@
 import { useState } from "react";
 import { useLocalStorage } from "../custom_hooks/useLocalStorage";
+import DuplicateTaskModal from "./DuplicateTaskModal";
 
 export default function ToDoList() {
     const [tasks, setTasks] = useLocalStorage("tasks", []);
     const [newTask, setNewTask] = useState("");
-
+    const [showModal, setShowModal] = useState(false);
+    const [duplicateTask, setDuplicateTask] = useState("")
 
     // Add a new task
     const addTask = () => {
-        if (newTask.trim() !== "") {
+        //Check if task is empty
+        if (newTask.trim() === "") {
+            alert("Please input task");
+            return;
+        }
+        
+        //check if task already exists
+        if (tasks.some(task => task.name === newTask)){
+            setDuplicateTask(newTask);
+            setShowModal(true);
+        } else {
             setTasks((prevTasks) => [...prevTasks, { name: newTask, status: "Pending" }]);
             setNewTask("");
-        } else {
-            alert("Please input task");
         }
     };
+
+    const confirmDuplicateTask = () => {
+        setTasks(prevTasks => [...prevTasks, { name: duplicateTask, status: "Pending"}]);
+        setShowModal(false);
+        setNewTask("");
+    }
 
     // Delete a task
     const deleteTask = (index) => {
@@ -62,6 +78,14 @@ export default function ToDoList() {
                     ))}
                 </tbody>
             </table>
+
+            { showModal && (
+                <DuplicateTaskModal 
+                    taskName={duplicateTask} 
+                    onCancel={() => setShowModal(false)}
+                    onConfirm={confirmDuplicateTask}
+                />
+            )}
         </>
     );
 };

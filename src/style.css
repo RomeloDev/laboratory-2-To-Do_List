@@ -113,3 +113,93 @@ th:nth-child(1), td:nth-child(1) { width: 10%; }  /* ID column */
 .deleteBtn:hover{
   background-color: #cc0c0c;
 }
+
+/* Duplicate Handling Modal */
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Box */
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Modal Text */
+.modal h2{
+  margin-top: 20px;
+  font-size: 25px;
+  font-weight: 500;
+  color: #333;
+}
+
+.taskNameSpan{
+  color: #0056b3;
+}
+
+.modal p {
+  font-size: 17.5px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Button Container */
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Buttons */
+.modal-buttons button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+/* Cancel Button */
+.modal-buttons button:first-child {
+  background: gray;
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background: darkgray;
+}
+
+/* Add Task Button */
+.modal-buttons button:last-child {
+  background: #007bff;
+  color: white;
+}
+
+.modal-buttons button:last-child:hover {
+  background: #0056b3;
+}
