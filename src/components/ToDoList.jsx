@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocalStorage } from "../custom_hooks/useLocalStorage";
 
-const ToDoList = () => {
+export default function ToDoList() {
     const [tasks, setTasks] = useLocalStorage("tasks", []);
     const [newTask, setNewTask] = useState("");
 
@@ -55,7 +55,7 @@ const ToDoList = () => {
                             <td>{task.name}</td>
                             <td>{task.status}</td>
                             <td className="actionColumn">
-                                <button className="done" onClick={() => completed(index)}>Done</button>
+                                <button className="done" style={{ display: task.status === "Complete" ? "none" : "block"}} onClick={() => completed(index)}>Done</button>
                                 <button className="deleteBtn" onClick={() => deleteTask(index)}>Delete</button>
                             </td>
                         </tr>
@@ -65,5 +65,3 @@ const ToDoList = () => {
         </>
     );
 };
-
-export default ToDoList;
