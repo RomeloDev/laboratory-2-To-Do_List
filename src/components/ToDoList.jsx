@@ -4,10 +4,6 @@ const ToDoList = () => {
     const [tasks, setTasks] = useState([]); 
     const [newTask, setNewTask] = useState("");
 
-    // Handle input change
-    const handleInputChange = (event) => {
-        setNewTask(event.target.value);
-    };
 
     // Add a new task
     const addTask = () => {
@@ -38,7 +34,7 @@ const ToDoList = () => {
         <>
             <h1>To-Do List</h1>
             <div>
-                <input type="text" placeholder="Enter a task" value={newTask} onChange={handleInputChange} />
+                <input type="text" placeholder="Enter a task" value={newTask} onChange={(e) => setNewTask(e.target.value)} />
                 <button id="addTaskBtn" onClick={addTask}>Add Task</button>
             </div>
 
