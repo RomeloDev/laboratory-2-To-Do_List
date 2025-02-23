@@ -26,28 +26,16 @@ h1 {
 }
 
 input[type="text"] {
-  width: 80%;
+  width: 85.5%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-input[type="submit"] {
-  padding: 10px 20px;
-  border: none;
-  background-color: #28a745;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: #218838;
-}
 
 
 #addTaskBtn {
-  padding: 5px 30px;
+  padding: 5px 25px;
   border: none;
   background-color: #007bff;
   color: #fff;
@@ -155,9 +143,6 @@ th:nth-child(1), td:nth-child(1) { width: 10%; }  /* ID column */
   color: #333;
 }
 
-.taskNameSpan{
-  color: #0056b3;
-}
 
 .modal p {
   font-size: 17.5px;
@@ -168,14 +153,14 @@ th:nth-child(1), td:nth-child(1) { width: 10%; }  /* ID column */
 }
 
 /* Button Container */
-.modal-buttons {
+.modal-buttons, .modal-delete-buttons {
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
 
 /* Buttons */
-.modal-buttons button {
+.modal-buttons button, .modal-delete-buttons button {
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
@@ -202,4 +187,25 @@ th:nth-child(1), td:nth-child(1) { width: 10%; }  /* ID column */
 
 .modal-buttons button:last-child:hover {
   background: #0056b3;
+}
+
+/* Cancel Button for delete modal */
+.cancel-btn{
+  background: gray;
+  color: white;
+}
+
+.cancel-btn:hover{
+  background: darkgray;
+}
+
+/* Delete Button */
+.delete-btn{
+  background-color: #ff0000;
+  color: white;
+}
+
+.delete-btn:hover{
+  background-color: #ff3333;
+  color: white;
 }
