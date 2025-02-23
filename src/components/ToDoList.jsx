@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useLocalStorage } from "../custom_hooks/useLocalStorage";
 import DuplicateTaskModal from "./DuplicateTaskModal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Importing Font-Awesome Library
+import { faTrash, faCheck, faPlus } from "@fortawesome/free-solid-svg-icons"; // Icons I used from font-awesome
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
 
 export default function ToDoList() {
-    const [tasks, setTasks] = useLocalStorage("tasks", []);
+    const [tasks, setTasks] = useLocalStorage("tasks", []); // custom hook for storing task in local storage
     const [newTask, setNewTask] = useState("");
     const [showDuplicateModal, setShowDuplicateModal] = useState(false);
     const [duplicateTask, setDuplicateTask] = useState("")
@@ -32,6 +32,7 @@ export default function ToDoList() {
         }
     };
 
+    // Add Duplicate Task
     const confirmDuplicateTask = () => {
         setTasks(prevTasks => [...prevTasks, { name: duplicateTask, status: "Pending"}]);
         setShowDuplicateModal(false);
@@ -68,11 +69,16 @@ export default function ToDoList() {
         <>
             <h1>To-Do List</h1>
             <div>
+                {/* InputField */}
                 <input type="text" placeholder="Enter a task" value={newTask} onChange={(e) => setNewTask(e.target.value)} />
-                <button id="addTaskBtn" onClick={addTask}><FontAwesomeIcon icon={faPlus} style={{marginRight: '5px', fontSize: '24px'}} /></button>
+                {/* Button for adding a task */}
+                <button id="addTaskBtn" onClick={addTask}>
+                    <FontAwesomeIcon icon={faPlus} style={{marginRight: '5px', fontSize: '24px'}} />
+                </button>
             </div>
 
             <table>
+                {/* Table Header */}
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -81,6 +87,7 @@ export default function ToDoList() {
                         <th>Action</th>
                     </tr>
                 </thead>
+                {/* Table Body */}
                 <tbody>
                     {tasks.map((task, index) => (
                         <tr key={index} style={{ opacity: task.status === "Complete" ? 0.5 : 1 }}>
@@ -88,14 +95,24 @@ export default function ToDoList() {
                             <td>{task.name}</td>
                             <td>{task.status}</td>
                             <td className="actionColumn">
-                                <button className="done" style={{ display: task.status === "Complete" ? "none" : "block"}} onClick={() => completed(index)}><FontAwesomeIcon icon={faCheck} style={{marginRight: '5px'}} />Done</button>
-                                <button className="deleteBtn" onClick={() => handleDeleteClick(index)}><FontAwesomeIcon icon={faTrash} style={{marginRight: '5px',}} />Delete</button>
+                                {/* Done Button */}
+                                <button className="done" style={{ display: task.status === "Complete" ? "none" : "block"}} onClick={() => completed(index)}>
+                                    <FontAwesomeIcon icon={faCheck} style={{marginRight: '5px'}} />
+                                    Done
+                                </button>
+
+                                {/* Delete Button */}
+                                <button className="deleteBtn" onClick={() => handleDeleteClick(index)}>
+                                    <FontAwesomeIcon icon={faTrash} style={{marginRight: '5px',}} />
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
+            {/* Duplicate Task Modal Popup */}
             { showDuplicateModal && (
                 <DuplicateTaskModal 
                     taskName={duplicateTask} 
@@ -104,7 +121,7 @@ export default function ToDoList() {
                 />
             )}
 
-            {/* Delete Confirmation Modal */}
+            {/* Delete Confirmation Modal Popup */}
             {showDeleteModal && selectedTaskIndex !== null && (
                 <DeleteConfirmationModal 
                     isOpen={showDeleteModal}

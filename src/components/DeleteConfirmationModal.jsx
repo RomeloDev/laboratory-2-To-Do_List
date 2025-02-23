@@ -1,5 +1,5 @@
 import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Importing font-awesome library
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function DeleteConfirmationModal ({isOpen, taskName, onCancel, onConfirm}) {
